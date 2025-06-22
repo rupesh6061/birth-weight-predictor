@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baby Weight Predictor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        .form-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .form-container button:hover {
+            background: #0056b3;
+        }
+
+        .prediction {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Baby Weight Predictor</h1>
+        <form action="/predict" method="post">
+            <input type="text" name="gestation" placeholder="Gestation (weeks)" required>
+            <input type="text" name="parity" placeholder="Parity (birth order)" required>
+            <input type="text" name="age" placeholder="Mother's Age" required>
+            <input type="text" name="height" placeholder="Mother's Height (inches)" required>
+            <input type="text" name="weight" placeholder="Mother's Weight (pounds)" required>
+            <input type="text" name="smoke" placeholder="Smoking (0 = No, 1 = Yes)" required>
+            <button type="submit">Predict Weight</button>
+        </form>
+
+        <h3> Predicted Birth Weight : {{prediction}} </h3>
+
+        {% if prediction is not none %}
+            <div class="prediction">
+                {{ prediction }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
